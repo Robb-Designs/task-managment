@@ -17,17 +17,17 @@
                 <input type="text" placeholder="Search tasks by name or category..." class="input">
             </div>
             <div class="flex gap-4">
-                <button id="clear-btn" class="btn">Clear Tasks</button>
+                <button id="clear-btn" class="btn">Clear All</button>
                 <button id="add-btn" class="btn">Add Task</button>
             </div>
         </nav>
     </header>
 
     <main>
-        <section>
+        <section class="h-[100vh] flex flex-col w-ful justify-center items-center">
             <!-- MODAL FORM FOR ADDING TASK -->
-            <div id="task-modal">
-                <form action="">
+            <div id="task-modal" class="hidden">
+                <form action="" class="flex flex-col bg-indigo-300 px-4 py-8">
                     <div>
                         <h1>Add New Task</h1>
                         <p>Fill in the details below to create a new task.</p>
@@ -50,9 +50,9 @@
                     <label for="description">Description (Optional)</label>
                     <textarea name="description" id="form-description-box" placeholder="Leave a comment about this task..."></textarea>
 
-                    <div>
-                        <button>Add Task</button>
-                        <button>Cancel</button>
+                    <div class="flex flex-col">
+                        <button id="add-btn-modal" type="button" class="btn">Add Task</button>
+                        <button id="cancel-btn-modal" type="button" class="btn">Cancel</button>
                     </div>
                 </form>
             </div>
