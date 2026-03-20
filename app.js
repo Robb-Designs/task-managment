@@ -1,0 +1,1 @@
+const addTaskBtn = document.getElementById("add-btn");
