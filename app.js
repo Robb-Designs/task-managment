@@ -1,3 +1,6 @@
+//where all the task objects will be held
+const userTasks = [];
+
 const addTaskBtn = document.getElementById("add-btn");
 const modal = document.getElementById("task-modal");
 //modal button caching
@@ -54,23 +57,56 @@ let createTaskObj = () => {
 //
 addBtnModal.addEventListener("click", () => {
     const task = createTaskObj();
-    const targetContainer = containerMap[task.status];
-    // Caching the div that the task cards are being placed
-    const taskCard = document.createElement("div"); // created the div
-    taskCard.textContent = task.name; // setting text content of the div to be the task name from the task obj
-    targetContainer.appendChild(taskCard); //appending to the container
 
-    if (!targetContainer) {
-    console.error("Invalid status:", task.status);
-    return;
-}
+    if (!containerMap[task.status]) {
+        console.error("Invalid status:", task.status);
+        return;
+    }
+
+    userTasks.push(task);   // only data
+    renderTask();           // render everything
+
+    //clears the modal form
+    taskNameInput.value = "";
+    categoryInput.value = "";
+    deadlineInput.value = "";
+    descriptionInput.value = "";
+    statusInput.value = "to-do"; // or default
+
 
     modal.classList.add("hidden"); //toggle the class to hidden
 
+
+
     console.log(`Task Status: ${task.status}`);
-    console.log(targetContainer);
+    console.log(userTasks);
 
 })
 
+//rendering task from the global array into cards
+const renderTask = () => {
+    //clears so ddoesnt make dduplicates
+    Object.values(containerMap).forEach(container => {
+        container.innerHTML = "";
+    });
+    //loop through the global array of tasks and render a card
 
+    for (let i = 0; i < userTasks.length; i++) {
+        const task = userTasks[i]; // get the object from global array
+        const taskCard = document.createElement("div"); //creates DOM div element
 
+        taskCard.innerHTML = `
+            <h3>${task.name}</h3>
+            <p>Deadline: ${task.deadline}</p>
+            <p>${task.description}</p>
+        `;
+
+        const targetContainer = containerMap[task.status];
+
+        if (targetContainer) {
+            targetContainer.appendChild(taskCard);
+        }
+
+    }
+
+}
