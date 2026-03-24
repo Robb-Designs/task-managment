@@ -98,7 +98,8 @@ const renderTask = (tasks = userTasks) => {
         taskCard.classList.add(
             "task-card",
             "transition",
-            "duration-200"
+            "duration-200",
+            "animate-in"
         );
 
         taskCard.innerHTML = `
@@ -118,7 +119,12 @@ const renderTask = (tasks = userTasks) => {
         const deleteBtn = taskCard.querySelector(".delete-btn");
 
         deleteBtn.addEventListener("click", () => {
-            deleteTask(task.id);
+            deleteBtn.disabled = true; //prevents double clicks
+            taskCard.classList.add("animate-out");
+
+            setTimeout(() => {
+                deleteTask(task.id);
+            }, 200);
         });
 
         const targetContainer = containerMap[displayStatus];
