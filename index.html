@@ -33,17 +33,17 @@
         <section class="min-h-screen flex flex-col w-full items-stretch pt-6">
             <!-- MODAL FORM FOR ADDING TASK -->
             <div id="task-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-                <form action="" class="flex flex-col bg-indigo-400 px-4 py-8">
+                <form action="" class="bg-base-100 rounded-2xl shadow-xl p-6 w-96 space-y-3">
                     <div>
-                        <h1>Add New Task</h1>
-                        <p>Fill in the details below to create a new task.</p>
+                        <h1 class="font-semibold text-lg mb-3">Add New Task</h1>
+                        <p class="text-s font-light">Fill in the details below to create a new task.</p>
                     </div>
 
                     <label for="task">Task Name</label>
-                    <input type="text" name="task" id="task-name-input" placeholder="e.g., Art gallery meeting">
+                    <input type="text" name="task" id="task-name-input" placeholder="e.g., Art gallery meeting" class="input input-bordered w-full">
 
                     <label for="categories">Category</label>
-                    <select name="task-category" id="categories">
+                    <select name="task-category" id="categories" class="select select-bordered w-full">
                         <option value="">--Please choose an option--</option>
                         <option value="personal">Personal</option>
                         <option value="design">Design</option>
@@ -51,7 +51,7 @@
                     </select>
 
                     <label for="status">Status</label>
-                    <select name="status-category" id="status">
+                    <select name="status-category" id="status" class="select select-bordered w-full">
                         <option value="">--Please choose an option--</option>
                         <option value="to-do">To-do</option>
                         <option value="in-progress">In-progress</option>
@@ -59,15 +59,15 @@
                     </select>
 
                     <label for="deadline-date">Deadline</label>
-                    <input type="date" id="deadline-date" min="2025-01-01" max="2030-01-01">
+                    <input type="date" id="deadline-date" min="2025-01-01" max="2030-01-01" class="input input-bordered w-full">
 
                     <label for="description">Description (Optional)</label>
                     <textarea name="description" id="form-description"
-                        placeholder="Leave a comment about this task..."></textarea>
+                        placeholder="Leave a comment about this task..." class="textarea textarea-bordered w-full"></textarea>
 
-                    <div class="flex flex-col">
-                        <button id="add-btn-modal" type="button" class="btn">Add Task</button>
-                        <button id="cancel-btn-modal" type="button" class="btn">Cancel</button>
+                    <div class="flex flex-col gap-2">
+                        <button id="add-btn-modal" type="button" class="btn btn-primary w-full">Add Task</button>
+                        <button id="cancel-btn-modal" type="button" class="btn btn-ghost w-full">Cancel</button>
                     </div>
                 </form>
             </div>
