@@ -73,7 +73,7 @@ addBtnModal.addEventListener("click", () => {
     categoryInput.value = "";
     deadlineInput.value = "";
     descriptionInput.value = "";
-    statusInput.value = "to-do"; // or default
+    statusInput.value = "to-do"; // places default
 
 
     modal.classList.add("hidden"); //toggle the class to hidden
@@ -91,22 +91,29 @@ const renderTask = (tasks = userTasks) => {
         container.innerHTML = "";
     });
 
-    tasks.forEach(task => {
-        const taskCard = document.createElement("div");
-        taskCard.classList.add("task-card");
+      tasks.forEach(task => {
 
-        taskCard.innerHTML = `
+        let displayStatus = task.status;
+
+        if (task.status !== "completed" && task.deadline && isOverdue(task.deadline)) {
+            displayStatus = "overdue";
+        }
+
+    const taskCard = document.createElement("div");
+    taskCard.classList.add("task-card");
+
+    taskCard.innerHTML = `
             <h3>${task.name}</h3>
             <p>${task.deadline}</p>
             <p>${task.description}</p>
         `;
 
-        const targetContainer = containerMap[task.status];
+    const targetContainer = containerMap[displayStatus];
 
-        if (targetContainer) {
-            targetContainer.appendChild(taskCard);
-        }
-    });
+    if (targetContainer) {
+        targetContainer.appendChild(taskCard);
+    }
+});
 };
 
 //clear task function
@@ -119,18 +126,7 @@ const removeAllTask = () => {
 // remove all task
 clearTaskBtn.addEventListener("click", removeAllTask)
 
-//filtering
-filter.addEventListener("change", (e) => {
-    const value = e.target.value;
 
-    console.log("Selected filter:", value); // 👈 debug
-
-    if (value === "all") {
-        renderTask();
-    } else {
-        filterByCategory(value);
-    }
-});
 
 //filter by status
 const filterByStatus = (status) => {
@@ -156,4 +152,15 @@ filterSelect.addEventListener("change", (e) => {
         filterByCategory(value);
     }
 });
+
+//overdue helper function
+const isOverdue = (deadline) => {
+    const today = new Date();
+    const taskDate = new Date(deadline);
+
+    // remove time portion for comparison
+    today.setHours(0, 0, 0, 0);
+
+    return taskDate < today;
+};
 
