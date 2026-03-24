@@ -109,6 +109,12 @@ const renderTask = (tasks = userTasks) => {
                 <p class="text-sm opacity-70">Deadline: ${task.deadline || "No deadline"}</p>
                 <p class="text-sm">${task.description || ""}</p>
 
+                <select class="select select-xs status-select mt-2" data-id="${task.id}">
+                    <option value="to-do" ${task.status === "to-do" ? "selected" : ""}>To-do</option>
+                    <option value="in-progress" ${task.status === "in-progress" ? "selected" : ""}>In-progress</option>
+                    <option value="completed" ${task.status === "completed" ? "selected" : ""}>Completed</option>
+                </select>
+
                 <div class="card-actions justify-end mt-2">
                     <button class="btn btn-xs btn-error delete-btn" data-id="${task.id}">Delete</button>
                 </div>
@@ -117,6 +123,25 @@ const renderTask = (tasks = userTasks) => {
         `;
 
         const deleteBtn = taskCard.querySelector(".delete-btn");
+        //card status change logic
+        const statusSelect = taskCard.querySelector(".status-select");
+
+        statusSelect.addEventListener("change", (e) => {
+            const newStatus = e.target.value;
+
+            // animate out first
+            taskCard.classList.add("animate-move-out");
+
+            setTimeout(() => {
+                // update task in global array
+                const targetTask = userTasks.find(t => t.id === task.id);
+                if (targetTask) {
+                    targetTask.status = newStatus;
+                }
+
+                renderTask();
+            }, 200);
+        });
 
         deleteBtn.addEventListener("click", () => {
             deleteBtn.disabled = true; //prevents double clicks
@@ -141,10 +166,18 @@ const deleteTask = (id) => {
     renderTask();
 };
 
-//clear task function
+//clear all task function
 const removeAllTask = () => {
-    userTasks.length = 0;
-    renderTask();
+     const allCards = document.querySelectorAll(".task-card");
+
+    allCards.forEach(card => {
+        card.classList.add("animate-out");
+    });
+
+    setTimeout(() => {
+        userTasks.length = 0;
+        renderTask();
+    }, 200);
 };
 
 // remove all task
