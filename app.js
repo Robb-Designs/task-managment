@@ -1,11 +1,12 @@
 //where all the task objects will be held
-const userTasks = [];
+let userTasks = [];
 
 const addTaskBtn = document.getElementById("add-btn");
 const modal = document.getElementById("task-modal");
 //modal button caching
 const addBtnModal = document.getElementById("add-btn-modal");
 const cancelBtnModal = document.getElementById("cancel-btn-modal");
+const clearTaskBtn = document.getElementById("clear-btn");
 //modal input caching
 let taskNameInput = document.getElementById("task-name-input");
 let categoryInput = document.getElementById("categories");
@@ -15,7 +16,7 @@ let descriptionInput = document.getElementById("form-description");
 
 // made a map obj...if the user selects a status, then the div gets appended to the corresponding container map property
 // better to map like this insteadd of using a for loop andd condditionals, this will scale easier
-const containerMap = {
+let containerMap = {
     "to-do": document.getElementById("to-do-content"),
     "in-progress": document.getElementById("in-progress-content"),
     "completed": document.getElementById("completed-content"),
@@ -110,3 +111,14 @@ const renderTask = () => {
     }
 
 }
+
+//clear task function
+const removeAllTask = () =>{
+    userTasks.length = 0;
+    renderTask();
+
+}
+
+// remove all task
+clearTaskBtn.addEventListener("click", removeAllTask)
+
