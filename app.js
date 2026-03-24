@@ -46,6 +46,7 @@ cancelBtnModal.addEventListener("click", () => {
 let createTaskObj = () => {
 
     let inputToObj = {
+        id: Date.now(),
         name: taskNameInput.value,
         category: categoryInput.value,
         deadline: deadlineInput.value,
@@ -91,7 +92,7 @@ const renderTask = (tasks = userTasks) => {
         container.innerHTML = "";
     });
 
-      tasks.forEach(task => {
+    tasks.forEach(task => {
 
         let displayStatus = task.status;
 
@@ -99,22 +100,36 @@ const renderTask = (tasks = userTasks) => {
             displayStatus = "overdue";
         }
 
-    const taskCard = document.createElement("div");
-    taskCard.classList.add("task-card");
+        const taskCard = document.createElement("div");
+        taskCard.classList.add("task-card");
 
-    taskCard.innerHTML = `
+        taskCard.innerHTML = `
             <h3>${task.name}</h3>
             <p>${task.deadline}</p>
             <p>${task.description}</p>
+            <button class="delete-btn" data-id="${task.id}">Delete</button>
         `;
 
-    const targetContainer = containerMap[displayStatus];
+        const deleteBtn = taskCard.querySelector(".delete-btn");
 
-    if (targetContainer) {
-        targetContainer.appendChild(taskCard);
-    }
-});
+        deleteBtn.addEventListener("click", () => {
+            deleteTask(task.id);
+        });
+
+        const targetContainer = containerMap[displayStatus];
+
+        if (targetContainer) {
+            targetContainer.appendChild(taskCard);
+        }
+    });
 };
+
+//delete single task
+const deleteTask = (id) => {
+    userTasks = userTasks.filter(task => task.id !== id);
+    renderTask();
+};
+
 
 //clear task function
 const removeAllTask = () => {
