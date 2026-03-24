@@ -3,6 +3,7 @@ let userTasks = [];
 
 const addTaskBtn = document.getElementById("add-btn");
 const modal = document.getElementById("task-modal");
+const filter = document.getElementById("filter-category");
 //modal button caching
 const addBtnModal = document.getElementById("add-btn-modal");
 const cancelBtnModal = document.getElementById("cancel-btn-modal");
@@ -85,20 +86,18 @@ addBtnModal.addEventListener("click", () => {
 })
 
 //rendering task from the global array into cards
-const renderTask = () => {
-    //clears so ddoesnt make dduplicates
+const renderTask = (tasks = userTasks) => {
     Object.values(containerMap).forEach(container => {
         container.innerHTML = "";
     });
-    //loop through the global array of tasks and render a card
 
-    for (let i = 0; i < userTasks.length; i++) {
-        const task = userTasks[i]; // get the object from global array
-        const taskCard = document.createElement("div"); //creates DOM div element
+    tasks.forEach(task => {
+        const taskCard = document.createElement("div");
+        taskCard.classList.add("task-card");
 
         taskCard.innerHTML = `
             <h3>${task.name}</h3>
-            <p>Deadline: ${task.deadline}</p>
+            <p>${task.deadline}</p>
             <p>${task.description}</p>
         `;
 
@@ -107,13 +106,11 @@ const renderTask = () => {
         if (targetContainer) {
             targetContainer.appendChild(taskCard);
         }
-
-    }
-
-}
+    });
+};
 
 //clear task function
-const removeAllTask = () =>{
+const removeAllTask = () => {
     userTasks.length = 0;
     renderTask();
 
@@ -121,4 +118,42 @@ const removeAllTask = () =>{
 
 // remove all task
 clearTaskBtn.addEventListener("click", removeAllTask)
+
+//filtering
+filter.addEventListener("change", (e) => {
+    const value = e.target.value;
+
+    console.log("Selected filter:", value); // 👈 debug
+
+    if (value === "all") {
+        renderTask();
+    } else {
+        filterByCategory(value);
+    }
+});
+
+//filter by status
+const filterByStatus = (status) => {
+    renderTask(userTasks.filter(task => task.status === status));
+};
+
+
+//filter function by category
+const filterByCategory = (category) => {
+    const filteredTasks = userTasks.filter(task => task.category === category);
+    renderTask(filteredTasks);
+};
+
+//filter function hookeed to the UI
+const filterSelect = document.getElementById("filter-category");
+
+filterSelect.addEventListener("change", (e) => {
+    const value = e.target.value;
+
+    if (value === "all") {
+        renderTask(); // show everything
+    } else {
+        filterByCategory(value);
+    }
+});
 

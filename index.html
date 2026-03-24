@@ -15,6 +15,12 @@
             <div class="flex gap-8">
                 <h1>Taskly</h1>
                 <input type="text" placeholder="Search tasks by name or category..." class="input">
+                <select id="filter-category">
+                    <option value="">--Filter--</option>
+                    <option value="all">All</option>
+                    <option value="in-progress">In-progress</option>
+                    <option value="personal">Personal</option>
+                </select>
             </div>
             <div class="flex gap-4">
                 <button id="clear-btn" class="btn">Clear All</button>
@@ -32,7 +38,7 @@
                         <h1>Add New Task</h1>
                         <p>Fill in the details below to create a new task.</p>
                     </div>
-                    
+
                     <label for="task">Task Name</label>
                     <input type="text" name="task" id="task-name-input" placeholder="e.g., Art gallery meeting">
 
@@ -56,7 +62,8 @@
                     <input type="date" id="deadline-date" min="2025-01-01" max="2030-01-01">
 
                     <label for="description">Description (Optional)</label>
-                    <textarea name="description" id="form-description" placeholder="Leave a comment about this task..."></textarea>
+                    <textarea name="description" id="form-description"
+                        placeholder="Leave a comment about this task..."></textarea>
 
                     <div class="flex flex-col">
                         <button id="add-btn-modal" type="button" class="btn">Add Task</button>
@@ -67,7 +74,8 @@
 
 
             <!-- dashboard -->
-            <div id="dashboard-container" class="flex flex-col md:flex-row w-full items-center justify-center md:justify-around gap-1 px-4">
+            <div id="dashboard-container"
+                class="flex flex-col md:flex-row w-full items-center justify-center md:justify-around gap-1 px-4">
                 <div id="to-do" class="bg-indigo-300 w-[75%] md:h-[65vh] md:w-[20%] p-2">
                     <h2>To-do</h2>
                     <div id="to-do-content"></div>
@@ -83,7 +91,7 @@
                 <div id="overdue" class="bg-indigo-300 w-[75%] md:h-[65vh] md:w-[20%] p-2">
                     <h2>Overdue</h2>
                     <div id="overdue-content"></div>
-                </div> 
+                </div>
             </div>
         </section>
     </main>
