@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="night">
 
 <head>
     <meta charset="UTF-8">
@@ -11,11 +11,11 @@
 
 <body>
     <header role="banner">
-        <nav role="navigation" class="flex justify-between p-4 navbar">
-            <div class="flex gap-8">
-                <h1>Taskly</h1>
+        <nav role="navigation" class="navbar bg-base-100 shadow-md flex justify-between p-5">
+            <div class="flex items-center gap-6">
+                <h1 class="text-2xl font-bold text-primary">Taskly</h1>
                 <input type="text" placeholder="Search tasks by name or category..." class="input">
-                <select id="filter-category">
+                <select id="filter-category" class="select select-bordered">
                     <option value="">--Filter--</option>
                     <option value="all">All</option>
                     <option value="in-progress">In-progress</option>
@@ -23,8 +23,8 @@
                 </select>
             </div>
             <div class="flex gap-4">
-                <button id="clear-btn" class="btn">Clear All</button>
-                <button id="add-btn" class="btn">Add Task</button>
+                <button id="clear-btn" class="btn btn-outline btn-error">Clear All</button>
+                <button id="add-btn" class="btn btn-primary">Add Task</button>
             </div>
         </nav>
     </header>
