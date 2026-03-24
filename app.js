@@ -105,7 +105,7 @@ const renderTask = (tasks = userTasks) => {
         <div class="card bg-base-100 shadow-md transition">
             <div class="card-body p-4">
                 <h3 class="font-semibold text-md">${task.name}</h3>
-                <p class="text-sm opacity-70">${task.deadline || "No deadline"}</p>
+                <p class="text-sm opacity-70">Deadline: ${task.deadline || "No deadline"}</p>
                 <p class="text-sm">${task.description || ""}</p>
 
                 <div class="card-actions justify-end mt-2">

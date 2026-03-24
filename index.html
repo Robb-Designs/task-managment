@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taskly</title>
     <style>
+
+        body{
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -15,20 +19,25 @@
                 opacity: 1;
             }
         }
+
         .animate-fadeIn {
             animation: fadeIn 0.2s ease-out;
         }
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body class="bg-base-100 text-base-content">
+<body class="bg-base-300 text-base-content">
     <header role="banner">
         <nav role="navigation" class="navbar bg-base-100 shadow-md flex justify-between p-5">
             <div class="flex items-center gap-6">
-                <h1 class="text-2xl font-bold text-primary">Taskly</h1>
-                <input type="text" placeholder="Search tasks by name or category..." class="input">
+                <h1 class="text-2xl font-extrabold text-primary">Taskly</h1>
+                <input type="text" placeholder="Search tasks..." class="input">
                 <select id="filter-category" class="select select-bordered">
                     <option value="">--Filter--</option>
                     <option value="all">All</option>
@@ -92,21 +101,25 @@
             <!-- dashboard -->
             <div id="dashboard-container"
                 class="flex flex-col md:flex-row w-full items-center justify-center md:justify-around gap-1 px-4 mt-8">
-                <div id="to-do" class="bg-base-200 rounded-2xl shadow-md w-[90%] md:w-[22%] p-4 flex flex-col border border-base-300">
+                <div id="to-do"
+                    class="bg-base-100 rounded-2xl shadow-md w-[90%] md:w-[22%] p-4 flex flex-col border border-base-300">
                     <h2 class="font-semibold text-lg mb-3">To-do</h2>
-                    <div id="to-do-content"></div>
+                    <div id="to-do-content" class="flex flex-col gap-3"></div>
                 </div>
-                <div id="in-progress" class="bg-base-200 rounded-2xl shadow-md w-[90%] md:w-[22%] p-4 flex flex-col border border-base-300">
+                <div id="in-progress"
+                    class="bg-base-200 rounded-2xl shadow-md w-[90%] md:w-[22%] p-4 flex flex-col border border-base-300">
                     <h2 class="font-semibold text-lg mb-3">In-progress</h2>
-                    <div id="in-progress-content"></div>
+                    <div id="in-progress-content" class="flex flex-col gap-3"></div>
                 </div>
-                <div id="completed" class="bg-base-200 rounded-2xl shadow-md w-[90%] md:w-[22%] p-4 flex flex-col border border-base-300">
+                <div id="completed"
+                    class="bg-base-200 rounded-2xl shadow-md w-[90%] md:w-[22%] p-4 flex flex-col border border-base-300">
                     <h2 class="font-semibold text-lg mb-3">Completed</h2>
-                    <div id="completed-content"></div>
+                    <div id="completed-content" class="flex flex-col gap-3"></div>
                 </div>
-                <div id="overdue" class="bg-base-200 rounded-2xl shadow-md w-[90%] md:w-[22%] p-4 flex flex-col border border-base-300">
+                <div id="overdue"
+                    class="bg-base-200 rounded-2xl shadow-md w-[90%] md:w-[22%] p-4 flex flex-col border border-base-300">
                     <h2 class="font-semibold text-lg mb-3">Overdue</h2>
-                    <div id="overdue-content"></div>
+                    <div id="overdue-content" class="flex flex-col gap-3"></div>
                 </div>
             </div>
         </section>
