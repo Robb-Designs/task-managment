@@ -74,5 +74,17 @@ Use the dropdown in the navigation bar to filter tasks by category:
 
 ### Clearing All Tasks
 
-- Click the **"Clear All"** button to remove all 
+- Click the **"Clear All"** button to remove all
 
+
+
+## Reflection
+
+### Challenges 
+One of the main challenges was managing dynamic DOM elements, especially when adding event listeners to elements created during runtime (like task cards and status dropdowns).
+
+
+---
+
+### Improvements
+With more time, I would ifile structure, my js file needs some cleaning it feels messy.
